@@ -4,7 +4,9 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.all
+    query = Publication.includes(:authors)
+    query = query.where('isbn LIKE ?', "%#{params[:isbn]}%") if params[:isbn].present?
+    @publications = query.order("title asc")
   end
 
   # GET /publications/1
@@ -69,6 +71,6 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-      params.require(:publication).permit(:title, :description, :isbn, :published_at, :publication_type)
+      params.require(:publication).permit(:title, :description, :isbn, :published_at)
     end
 end

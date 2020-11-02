@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_094521) do
+ActiveRecord::Schema.define(version: 2020_11_02_100306) do
 
   create_table "authors", force: :cascade do |t|
     t.string "email"
@@ -37,5 +37,4 @@ ActiveRecord::Schema.define(version: 2020_11_02_094521) do
     t.index ["isbn"], name: "index_publications_on_isbn", unique: true
     t.index ["title"], name: "index_publications_on_title"
   end
-
 end
