@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_100306) do
     t.text "description"
     t.string "isbn"
     t.datetime "published_at"
-    t.integer "publication_type"
+    t.string "publication_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["isbn"], name: "index_publications_on_isbn", unique: true
