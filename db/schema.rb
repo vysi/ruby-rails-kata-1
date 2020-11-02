@@ -20,14 +20,22 @@ ActiveRecord::Schema.define(version: 2020_11_02_094521) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "authors_publications", id: false, force: :cascade do |t|
+    t.integer "publication_id", null: false
+    t.integer "author_id", null: false
+    t.index ["publication_id", "author_id"], name: "index_authors_publications_on_publication_id_and_author_id"
+  end
+
   create_table "publications", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "isbn"
     t.datetime "published_at"
-    t.string "publication_type"
+    t.integer "publication_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["isbn"], name: "index_publications_on_isbn", unique: true
+    t.index ["title"], name: "index_publications_on_title"
   end
 
 end
