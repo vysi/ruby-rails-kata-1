@@ -1,8 +1,6 @@
 class Publication < ApplicationRecord
   has_and_belongs_to_many :authors
 
-  enum publication_type: [:book, :magazine]
-
   def self.from_csv(path, pub_type)
     CSV.foreach(path, {col_sep: ';', headers: true, header_converters: :symbol}) do |row|
       authors = Author.where(email: row[:authors].split(","))
